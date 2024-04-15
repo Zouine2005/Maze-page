@@ -6,8 +6,240 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Maze Game</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:400,400i|PT+Serif:700" rel="stylesheet">
-    <link rel="stylesheet" href="dist/css/style.css">
-    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+   <style>
+    /* Body */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Header */
+  .site-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .brand h1 a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 28px;
+  }
+  
+  /* Main */
+  .main-content {
+    padding: 50px 20px;
+  }
+  
+  .hero {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: #17a2b8;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .cta-button:hover {
+    background-color: #138496;
+  }
+  
+  /* Features */
+  .features {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .feature {
+    display: inline-block;
+    width: calc(33.33% - 40px);
+    background-color: #fff;
+    padding: 30px;
+    margin: 0 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .feature p {
+    font-size: 16px;
+  }
+  
+  /* Footer */
+  .site-footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .footer-brand h1 a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+  }
+  
+  .footer-links li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .footer-links li:last-child {
+    margin-right: 0;
+  }
+  
+  .footer-links a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-social-links li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .footer-social-links li:last-child {
+    margin-right: 0;
+  }
+  
+  .footer-social-links a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footer-social-links a:hover {
+    opacity: 0.7;
+  }
+/* Pour ajuster la taille de l'image */
+.hero-media img {
+    max-width: 100%; /* La largeur maximale de l'image sera égale à la largeur du conteneur */
+    height: auto; /* L'image conservera son ratio hauteur/largeur */
+    display: block; /* Pour éviter les marges indésirables */
+    margin: 0 auto; /* Pour centrer l'image horizontalement */
+    margin-bottom: 30px; /* Ajouter une marge en bas pour l'espace */
+  }
+  
+  /* Pour styliser les boutons Signup et Login */
+  .header-links .button {
+    background-color: #17a2b8;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .header-links .button:hover {
+    background-color: #138496;
+  }
+    
+   </style>
+    <script >(function () {
+        const doc = document.documentElement
+      
+        doc.classList.remove('no-js')
+        doc.classList.add('js')
+      
+        // Reveal animations
+        if (document.body.classList.contains('has-animations')) {
+          /* global ScrollReveal */
+          const sr = window.sr = ScrollReveal()
+      
+          sr.reveal('.hero-title, .hero-paragraph, .hero-cta', {
+            duration: 1000,
+            distance: '40px',
+            easing: 'cubic-bezier(0.5, -0.01, 0, 1.005)',
+            origin: 'bottom',
+            interval: 150
+          })
+      
+          sr.reveal('.feature, .pricing-table', {
+            duration: 600,
+            distance: '40px',
+            easing: 'cubic-bezier(0.5, -0.01, 0, 1.005)',
+            interval: 100,
+            origin: 'bottom',
+            viewFactor: 0.5
+          })
+      
+          sr.reveal('.feature-extended-image', {
+            duration: 600,
+            scale: 0.9,
+            easing: 'cubic-bezier(0.5, -0.01, 0, 1.005)',
+            viewFactor: 0.5
+          })
+        }
+      }())
+      (function() {
+    // Ajout des classes "no-js" et "js" pour indiquer la disponibilité de JavaScript
+    const html = document.documentElement;
+    html.classList.remove("no-js");
+    html.classList.add("js");
+
+    // Vérification de l'activation des animations sur le corps du document
+    if (document.body.classList.contains("has-animations")) {
+        // Initialisation de ScrollReveal et déclenchement des animations
+        const sr = window.sr = ScrollReveal();
+        
+        // Révélation des éléments de la section hero avec une animation
+        sr.reveal(".hero-title, .hero-paragraph, .hero-cta", {
+            duration: 1000,
+            distance: "40px",
+            easing: "cubic-bezier(0.5, -0.01, 0, 1.005)",
+            origin: "bottom",
+            interval: 150
+        });
+        
+        // Révélation des éléments de la section des fonctionnalités et du tableau de tarification avec une animation
+        sr.reveal(".feature, .pricing-table", {
+            duration: 600,
+            distance: "40px",
+            easing: "cubic-bezier(0.5, -0.01, 0, 1.005)",
+            interval: 100,
+            origin: "bottom",
+            viewFactor: 0.5
+        });
+        
+        // Révélation des images étendues avec une animation
+        sr.reveal(".feature-extended-image", {
+            duration: 600,
+            scale: 0.9,
+            easing: "cubic-bezier(0.5, -0.01, 0, 1.005)",
+            viewFactor: 0.5
+        });
+    }
+})();
+
+      </script>
 </head>
 <body class="is-boxed has-animations">
     <div class="body-wrap boxed-container">
@@ -32,8 +264,8 @@
                     </div>
                     <ul class="header-links list-reset m-0">
                         <li>
-                            <a href="#">Login</a>
-                        </li>
+                            <a class="button button-sm button-shadow" href="#">Login</a>
+                        </li><br>
                         <li>
                             <a class="button button-sm button-shadow" href="#">Signup</a>
                         </li>
@@ -60,15 +292,7 @@
                 <div class="container">
                     <div class="clients-inner section-inner has-top-divider">
                         <div class="container-sm">
-                            <ul class="list-reset mb-0">
-                                <li>
-                                    <span class="screen-reader-text">Microsoft</span>
-                                    <svg width="132" height="40" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M40.405 20.317c0-3.065-2.053-4.807-4.96-4.807h-1.779v9.617h1.729c2.703 0 5.01-1.455 5.01-4.81zm31.646 3.46L58.945 34l-11.978-9.342c-1.729 4.113-5.905 6.97-10.715 6.97H26V9.006h10.252c5.374 0 9.247 3.386 10.711 6.993l11.982-9.332 4.438 3.46-10.981 8.55 2.11 1.635 10.978-8.544 4.444 3.45-10.98 8.559 2.108 1.64 10.99-8.561v-7.85h7.966v16.02h7.947v6.63H72.05v-7.879zm26.005 1.251H106v6.628H90.082V9.006h7.974v16.022z" fill="#93A2B3" fill-rule="nonzero"/>
-                                    </svg>
-                                </li>
-                                
-                            </ul>
+                            
                         </div>
                     </div>
                 </div>
@@ -246,10 +470,12 @@
             <section class="pricing section">
                 <div class="container">
                     <div class="pricing-inner section-inner has-top-divider">
+                        <center>
                         <video width="920" height="640" controls>
                             <source src="/video/Maze 3D - Google Chrome 2024-04-13 14-02-09.mp4">
                             </source>
                         </video>
+                    </center>
                      </div>
                 </div>
             </section>
@@ -304,7 +530,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/mohamed-zouine-5716a2252">
                                 <span class="screen-reader-text">linkdin</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"  class="bi bi-linkedin" viewBox="0 0 16 16">
                                     <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
